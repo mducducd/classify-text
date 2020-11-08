@@ -5,22 +5,22 @@ import sklearn.feature_extraction.text
 import sklearn.datasets
 import sklearn.naive_bayes
 import sklearn.svm
-import sklearn.cross_validation
+import sklearn.model_selection
 import numpy
 import sklearn.neighbors
 
 
 def _main():
     path = 'dataset'
-    NB(path)
-    # SVM(path)
+    #NB(path)
+    SVM(path)
     # KNN(path)
     # KNN_parameter(path)
 
 
 def KNN(path):
-    print "Classifier: K Nearest Neighbors"
-    print "Train-Test Split"
+    print("Classifier: K Nearest Neighbors")
+    print("Train-Test Split")
 
     # preprocess
     main.reorganize_dataset(path)
@@ -155,8 +155,8 @@ def split_test_classifier(clf, X, y):
 
 
 def KNN_parameter(path):
-    print "Classifier: K Nearest Neighbors"
-    print "KFOLD parameter test"
+    print("Classifier: K Nearest Neighbors")
+    print("KFOLD parameter test")
 
     # preprocess
     main.reorganize_dataset(path)
@@ -194,7 +194,7 @@ def KFOLD_KNN_parameter_test(X, y, n_cross_val=5, n_neighbors=5):
     i = []
 
     for n_neighbors in range(2, 21):
-        print 'number of neighbors:', n_neighbors
+        print('number of neighbors:', n_neighbors)
         # build two classifiers
         clf1 = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights1)
         clf2 = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights2)
@@ -213,7 +213,7 @@ def plot_results(i, results_list, labels_list):
     colors_list = ['red', 'blue', 'black', 'green', 'cyan', 'yellow']
 
     if not len(results_list) == len(labels_list):
-        print 'un equal len in results and labels'
+        print('un equal len in results and labels')
         raise Exception
 
     for (result, label, color) in zip(results_list, labels_list, colors_list):
