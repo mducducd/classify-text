@@ -16,8 +16,8 @@ def main():
     init()
 
     # get the dataset
-    print(colored("Where is the dataset?", 'cyan', attrs=['bold']))
-    print(colored('warning: files might get deleted if they are incompatible with utf8', 'yellow'))
+    print((colored("Where is the dataset?", 'cyan', attrs=['bold'])))
+    print((colored('warning: files might get deleted if they are incompatible with utf8', 'yellow')))
     ans = sys.stdin.readline()
     # remove any newlines or spaces at the end of the input
     path = ans.strip('\n')
@@ -25,7 +25,7 @@ def main():
         path = path.rstrip(' ')
 
     # preprocess data into two folders instead of 6
-    print(colored("Reorganizing folders, into two classes", 'cyan', attrs=['bold']))
+    print((colored("Reorganizing folders, into two classes", 'cyan', attrs=['bold'])))
     reorganize_dataset(path)
 
     print('\n\n')
@@ -75,19 +75,19 @@ def main_test(path=None):
     print('\n\n')
 
     # load data
-    print(colored('Loading files into memory', 'green', attrs=['bold']))
+    print((colored('Loading files into memory', 'green', attrs=['bold'])))
     files = sklearn.datasets.load_files(dir_path)
 
     # refine all emails
-    print(colored('Refining all files', 'green', attrs=['bold']))
+    print((colored('Refining all files', 'green', attrs=['bold'])))
     util.refine_all_emails(files.data)
 
     # calculate the BOW representation
-    print(colored('Calculating BOW', 'green', attrs=['bold']))
+    print((colored('Calculating BOW', 'green', attrs=['bold'])))
     word_counts = util.bagOfWords(files.data)
 
     # TFIDF
-    print(colored('Calculating TFIDF', 'green', attrs=['bold']))
+    print((colored('Calculating TFIDF', 'green', attrs=['bold'])))
     tf_transformer = sklearn.feature_extraction.text.TfidfTransformer(use_idf=True).fit(word_counts)
     X = tf_transformer.transform(word_counts)
 
@@ -103,36 +103,36 @@ def main_test(path=None):
 
     # test the classifier
     print('\n\n')
-    print(colored('Testing classifier with train-test split', 'magenta', attrs=['bold']))
+    print((colored('Testing classifier with train-test split', 'magenta', attrs=['bold'])))
     test_classifier(X, files.target, clf, test_size=0.2, y_names=files.target_names, confusion=False)
 
 
 def remove_incompatible_files(dir_path):
     # find incompatible files
-    print(colored('Finding files incompatible with utf8: ', 'green', attrs=['bold']))
+    print((colored('Finding files incompatible with utf8: ', 'green', attrs=['bold'])))
     incompatible_files = util.find_incompatible_files(dir_path)
-    print(colored(len(incompatible_files), 'yellow'), 'files found')
+    print((colored(len(incompatible_files), 'yellow'), 'files found'))
 
     # delete them
     if(len(incompatible_files) > 0):
-        print(colored('Deleting incompatible files', 'red', attrs=['bold']))
+        print((colored('Deleting incompatible files', 'red', attrs=['bold'])))
         util.delete_incompatible_files(incompatible_files)
 
 
 def test_classifier(X, y, clf, test_size=0.4, y_names=None, confusion=False):
     # train-test split
-    print('test size is: %2.0f%%' % (test_size * 100))
+    print(('test size is: %2.0f%%' % (test_size * 100)))
     X_train, X_test, y_train, y_test = sklearn.cross_validation.train_test_split(X, y, test_size=test_size)
 
     clf.fit(X_train, y_train)
     y_predicted = clf.predict(X_test)
 
     if not confusion:
-        print(colored('Classification report:', 'magenta', attrs=['bold']))
-        print(sklearn.metrics.classification_report(y_test, y_predicted, target_names=y_names))
+        print((colored('Classification report:', 'magenta', attrs=['bold'])))
+        print((sklearn.metrics.classification_report(y_test, y_predicted, target_names=y_names)))
     else:
-        print(colored('Confusion Matrix:', 'magenta', attrs=['bold']))
-        print(sklearn.metrics.confusion_matrix(y_test, y_predicted))
+        print((colored('Confusion Matrix:', 'magenta', attrs=['bold'])))
+        print((sklearn.metrics.confusion_matrix(y_test, y_predicted)))
 
 if __name__ == '__main__':
     main()
