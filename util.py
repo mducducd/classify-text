@@ -3,7 +3,7 @@ from termcolor import colored
 import sklearn.datasets
 import sklearn.feature_extraction.text
 import sklearn.naive_bayes
-import sklearn.cross_validation
+import sklearn.model_selection
 import sklearn.svm
 import sklearn.neighbors
 
@@ -53,7 +53,7 @@ def delete_incompatible_files(files):
     """
     import os
     for f in files:
-        print colored("deleting file:", 'red'), f
+        print(colored("deleting file:", 'red'), f)
         os.remove(f)
 
 
@@ -83,9 +83,9 @@ def pretty_print_scores(scores):
     Prints mean and std of a list of scores, pretty and colorful!
     parameter `scores` is a list of numbers.
     """
-    print colored("                                      ", 'white', 'on_white')
-    print colored(" Mean accuracy: %0.3f (+/- %0.3f std) " % (scores.mean(), scores.std() / 2), 'magenta', 'on_white', attrs=['bold'])
-    print colored("                                      ", 'white', 'on_white')
+    print(colored("                                      ", 'white', 'on_white'))
+    print(colored(" Mean accuracy: %0.3f (+/- %0.3f std) " % (scores.mean(), scores.std() / 2), 'magenta', 'on_white', attrs=['bold']))
+    print(colored("                                      ", 'white', 'on_white'))
 
 
 def cross_validation(data, target, classifier, cv=5):
