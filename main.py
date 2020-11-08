@@ -68,7 +68,7 @@ def reorganize_dataset(path):
 
 
 def main_test(path=None):
-    dir_path = './dataset'
+    dir_path = path or 'dataset'
 
     remove_incompatible_files(dir_path)
 
