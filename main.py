@@ -1,7 +1,7 @@
 import util
 import sklearn.datasets
 import sklearn.metrics
-import sklearn.cross_validation
+import sklearn.model_selection
 import sklearn.svm
 import sklearn.naive_bayes
 import sklearn.neighbors
@@ -16,8 +16,8 @@ def main():
     init()
 
     # get the dataset
-    print colored("Where is the dataset?", 'cyan', attrs=['bold'])
-    print colored('warning: files might get deleted if they are incompatible with utf8', 'yellow')
+    print(colored("Where is the dataset?", 'cyan', attrs=['bold']))
+    print(colored('warning: files might get deleted if they are incompatible with utf8', 'yellow'))
     ans = sys.stdin.readline()
     # remove any newlines or spaces at the end of the input
     path = ans.strip('\n')
@@ -25,10 +25,10 @@ def main():
         path = path.rstrip(' ')
 
     # preprocess data into two folders instead of 6
-    print colored("Reorganizing folders, into two classes", 'cyan', attrs=['bold'])
+    print(colored("Reorganizing folders, into two classes", 'cyan', attrs=['bold']))
     reorganize_dataset(path)
 
-    print '\n\n'
+    print('\n\n')
 
     # do the main test
     main_test(path)
