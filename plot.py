@@ -58,8 +58,8 @@ def KNN(path):
 
 
 def SVM(path):
-    print "Classifier: Support Vector Machine"
-    print "Train-Test Split"
+    print("Classifier: Support Vector Machine")
+    print("Train-Test Split")
 
     # preprocess
     main.reorganize_dataset(path)
@@ -94,8 +94,8 @@ def SVM(path):
 
 
 def NB(path):
-    print "Classifier: Naive Bayes"
-    print "Train-Test Split"
+    print("Classifier: Naive Bayes")
+    print("Train-Test Split")
 
     # preprocess
     main.reorganize_dataset(path)
@@ -132,9 +132,9 @@ def NB(path):
 def split_test_classifier(clf, X, y):
     results = []
     i_ = []
-    print '================='
+    print('=================')
     for i in range(1, 100):
-        print i
+        print(i)
         i_.append(i)
         percent = i / 100.0
 
@@ -194,7 +194,7 @@ def KFOLD_KNN_parameter_test(X, y, n_cross_val=5, n_neighbors=5):
     i = []
 
     for n_neighbors in range(2, 21):
-        print('number of neighbors:', n_neighbors)
+        print(('number of neighbors:', n_neighbors))
         # build two classifiers
         clf1 = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights1)
         clf2 = sklearn.neighbors.KNeighborsClassifier(n_neighbors, weights=weights2)
